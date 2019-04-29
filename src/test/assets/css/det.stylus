@@ -1,0 +1,8 @@
+.det-tit
+  font-size 20px
+  text-align center
+  color #666
+  padding 40px
+
+.aa
+  font-size 20px

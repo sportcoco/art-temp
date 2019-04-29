@@ -1,0 +1,27 @@
+<script type="text/html" id="temp">
+  {{if desc}}
+  <div class="new-years-box" data-sport id="winBox">
+    <div class="cont-box">
+      <div class="close-btn" id="closeBtn"></div>
+      <div class="c-info-box">
+        <h1 class="c-tit">
+          恭喜您获得钱盆年终回馈奖励
+        </h1>
+        <div class="info">
+          <i class="i-img">
+            <img src="{{imgurl}}" alt="img" />
+          </i>
+          <div class="i-text-box">
+            <h1 class="i-t-tit">
+              {{ tit }}
+            </h1>
+            <p class="i-t-cont">
+              {{ cont }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/if}}
+</script>
