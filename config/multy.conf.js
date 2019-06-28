@@ -3,9 +3,9 @@
 const path = require('path');
 const glob = require('glob');
 const fs = require('fs');
+const base = require('./base.conf');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-
 
 const PAGE_PATH = path.resolve(__dirname, '../src');
 
@@ -35,10 +35,11 @@ const htmlPlugin = function() {
     const conf = {
       template: filePath,
       filename: filename + '.html',
-      inject: 'head',
+      inject: true,
       hash: false,
       title: filename,
-      chunks: [filename, 'vendor']
+      chunks: [filename, 'vendor'],
+      minify: false
     };
     arrHtml.push(new HtmlWebpackPlugin(conf));
   });
@@ -54,12 +55,12 @@ const copyPlugin = function() {
     const conf = [
       {
         from: path.resolve(__dirname, `../src/${name}/assets`),
-        to: path.resolve(__dirname, `../dist/assets`),
+        to: path.resolve(__dirname, `../${base.config.build.dirName}/assets`),
         ignore: ['css/**.*']
       },
       {
         from: path.resolve(__dirname, `../src/${name}/lib`),
-        to: path.resolve(__dirname, `../dist/lib`)
+        to: path.resolve(__dirname, `../${base.config.build.dirName}/lib`)
       }
     ];
     copy = new CopyWebpackPlugin(conf);

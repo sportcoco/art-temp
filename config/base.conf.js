@@ -1,19 +1,23 @@
 //环境配置
 'use strict';
+const fs = require('fs');
 const path = require('path');
+
+const dirName = getDirNames('./src');
 
 const config = {
   dev: {
     host: 'localhost',
-    port: 9000,
+    port: 9090,
     assetsSubDirectory: 'assets',
     assetsPublicPath: '/',
     proxyTable: {}
   },
   build: {
-    assetsRoot: path.resolve(__dirname, '../dist'),
+    assetsRoot: path.resolve(__dirname, `../${dirName}`),
     assetsSubDirectory: 'assets',
-    assetsPublicPath: './'
+    assetsPublicPath: './',
+    dirName: dirName[0]
   }
 };
 
@@ -25,6 +29,16 @@ const assetsPath = function(_path) {
 
   return path.posix.join(assetsSubDirectory, _path);
 };
+
+//获取文件夹名称
+function getDirNames(mypath = '.') {
+  const items = fs.readdirSync(mypath);
+  let result = [];
+  items.map(item => {
+    result.push(item);
+  });
+  return result;
+}
 
 module.exports = {
   config,
